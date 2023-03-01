@@ -1,0 +1,825 @@
+Enter password: ********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databses;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'databses' at line 1
+mysql> show tables;
+ERROR 1046 (3D000): No database selected
+mysql> show adatbases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'adatbases' at line 1
+mysql> showa databases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'showa databases' at line 1
+mysql> showa database;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'showa database' at line 1
+mysql> show database;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database' at line 1
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| adityaraj          |
+| company_211b172    |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| university         |
+| university_211b024 |
+| university_211b136 |
+| university_211b172 |
+| university_211b248 |
+| university_211b326 |
+| university_211b429 |
+| world              |
++--------------------+
+15 rows in set (0.28 sec)
+
+mysql> use university_211b326;
+Database changed
+mysql> show ables;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ables' at line 1
+mysql> show tables;
++------------------------------+
+| Tables_in_university_211b326 |
++------------------------------+
+| department                   |
+| dependent                    |
+| dept_locations               |
+| employee                     |
+| project                      |
+| works_on                     |
++------------------------------+
+6 rows in set (0.14 sec)
+
+mysql> SELECT * FROM employee;
++----------+-------+---------+-----------+------------+--------------------------+------+--------+-----------+------+
+| Fname    | Minit | Lname   | Ssn       | Bdate      | Address                  | Sex  | Salary | Super_ssn | Dno  |
++----------+-------+---------+-----------+------------+--------------------------+------+--------+-----------+------+
+| John     | B     | Smith   | 123456789 | 1965-01-09 | 731 Fondren, Houston, TX | M    |  30000 | 333445555 |    5 |
+| Franklin | T     | Wong    | 333445555 | 1955-12-08 | 638 Voss, Houston, TX    | M    |  40000 | 888665555 |    5 |
+| Alicia   | J     | Zelaya  | 999887777 | 1968-01-19 | 3321 Castle, Spring, TX  | F    |  25000 | 987654321 |    4 |
+| Jennifer | S     | Wallace | 987654321 | 1941-08-20 | 291 Berry, Bellaire, TX  | F    |  43000 | 888665555 |    4 |
+| Ramesh   | K     | Narayan | 666884444 | 1962-09-15 | 975 Fire Oak, Humble, TX | M    |  38000 | 333445555 |    5 |
+| Joyce    | A     | English | 453453453 | 1972-07-31 | 5631 Rice, Houston, TX   | F    |  25000 | 333445555 |    5 |
+| Ahmed    | V     | Jabbar  | 987987987 | 1969-03-29 | 980 Dallas, Houston, TX  | M    |  25000 | 987654321 |    4 |
+| James    | E     | Borg    | 888665555 | 1937-11-10 | 450 Stone, Houston, TX   | M    |  55000 |      NULL |    1 |
++----------+-------+---------+-----------+------------+--------------------------+------+--------+-----------+------+
+8 rows in set (0.15 sec)
+
+mysql> SELECT AVG(Fname) FROM employee;
++------------+
+| AVG(Fname) |
++------------+
+|          0 |
++------------+
+1 row in set, 8 warnings (0.04 sec)
+
+mysql> SELECT AVG(Salary) FROM employee;
++-------------+
+| AVG(Salary) |
++-------------+
+|  35125.0000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT COUNT(Salary) FROM employee;
++---------------+
+| COUNT(Salary) |
++---------------+
+|             8 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT MIN(Salary) FROM employee;
++-------------+
+| MIN(Salary) |
++-------------+
+|       25000 |
++-------------+
+1 row in set (0.04 sec)
+
+mysql> SELECT MAX(Salary) FROM employee;
++-------------+
+| MAX(Salary) |
++-------------+
+|       55000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT SUM(Salary) FROM employee;
++-------------+
+| SUM(Salary) |
++-------------+
+|      281000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT STD(Salary) FROM employee;
++--------------------+
+| STD(Salary)        |
++--------------------+
+| 10141.961102272086 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT VARIANCE(Salary) FROM employee;
++------------------+
+| VARIANCE(Salary) |
++------------------+
+|        102859375 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT GROUP_CONCAT(Salary) FROM employee;
++-------------------------------------------------+
+| GROUP_CONCAT(Salary)                            |
++-------------------------------------------------+
+| 30000,40000,25000,43000,38000,25000,25000,55000 |
++-------------------------------------------------+
+1 row in set (0.04 sec)
+
+mysql> SELECT ASCII(S);
+ERROR 1054 (42S22): Unknown column 'S' in 'field list'
+mysql> SELECT ASCII('S');
++------------+
+| ASCII('S') |
++------------+
+|         83 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT BIT_LENGTH(Fanme) FROM employee;
+ERROR 1054 (42S22): Unknown column 'Fanme' in 'field list'
+mysql> SELECT BIT_LENGTH(Fname) FROM employee;
++-------------------+
+| BIT_LENGTH(Fname) |
++-------------------+
+|                32 |
+|                64 |
+|                48 |
+|                64 |
+|                48 |
+|                40 |
+|                40 |
+|                40 |
++-------------------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT CHAR('A','B','C','D');
++----------------------------------------------+
+| CHAR('A','B','C','D')                        |
++----------------------------------------------+
+| 0x00000000                                   |
++----------------------------------------------+
+1 row in set, 4 warnings (0.00 sec)
+
+mysql> SELECT CHAR(A,B,C,D);
+ERROR 1054 (42S22): Unknown column 'A' in 'field list'
+mysql> SELECT CHAR(Fname) FROM employee;
++--------------------------+
+| CHAR(Fname)              |
++--------------------------+
+| 0x00                     |
+| 0x00                     |
+| 0x00                     |
+| 0x00                     |
+| 0x00                     |
+| 0x00                     |
+| 0x00                     |
+| 0x00                     |
++--------------------------+
+8 rows in set, 8 warnings (0.00 sec)
+
+mysql> SELECT CONCAT("HI","JUET!!");
++-----------------------+
+| CONCAT("HI","JUET!!") |
++-----------------------+
+| HIJUET!!              |
++-----------------------+
+1 row in set (0.03 sec)
+
+mysql> SELECT CONCAT_WS(",","HI","JUET!!");
++------------------------------+
+| CONCAT_WS(",","HI","JUET!!") |
++------------------------------+
+| HI,JUET!!                    |
++------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT INSERT("047pegasus",1,5,"hello");
++----------------------------------+
+| INSERT("047pegasus",1,5,"hello") |
++----------------------------------+
+| hellogasus                       |
++----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT FIELD("PEGA","SUS","047","PEGAS","PEGASUS","PEGASU","PEGASUS!!","PEGA");
++-------------------------------------------------------------------------+
+| FIELD("PEGA","SUS","047","PEGAS","PEGASUS","PEGASU","PEGASUS!!","PEGA") |
++-------------------------------------------------------------------------+
+|                                                                       7 |
++-------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT FIND_IN_SET("047PEGASUS",Fname) FROM employee;
++---------------------------------+
+| FIND_IN_SET("047PEGASUS",Fname) |
++---------------------------------+
+|                               0 |
+|                               0 |
+|                               0 |
+|                               0 |
+|                               0 |
+|                               0 |
+|                               0 |
+|                               0 |
++---------------------------------+
+8 rows in set (0.03 sec)
+
+mysql> SELECT LCASE("047PEGASUS");
++---------------------+
+| LCASE("047PEGASUS") |
++---------------------+
+| 047pegasus          |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> SLECT LEFT("047PEGASUS",5);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SLECT LEFT("047PEGASUS",5)' at line 1
+mysql> SELECT LEFT("047PEGASUS",5);
++----------------------+
+| LEFT("047PEGASUS",5) |
++----------------------+
+| 047PE                |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT LPAD("047PEGASUS",5,"Tanishq");
++--------------------------------+
+| LPAD("047PEGASUS",5,"Tanishq") |
++--------------------------------+
+| 047PE                          |
++--------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT ORD('T');
++----------+
+| ORD('T') |
++----------+
+|       84 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT POSITION("PEGA","047PEGASUS");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',"047PEGASUS")' at line 1
+mysql> SELECT POSITION("PEGA", "047PEGASUS");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', "047PEGASUS")' at line 1
+mysql> SELECT POSITION("PEGA", '047PEGASUS');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', '047PEGASUS')' at line 1
+mysql> SELECT POSITION("PEGA", "47PEGASUS");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', "47PEGASUS")' at line 1
+mysql> SELECT POSITION("PEGA","47PEGASUS");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',"47PEGASUS")' at line 1
+mysql> SELECT QUOTE("047PEGASUS");
++---------------------+
+| QUOTE("047PEGASUS") |
++---------------------+
+| '047PEGASUS'        |
++---------------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT REPEAT("047PEGASUS",7);
++------------------------------------------------------------------------+
+| REPEAT("047PEGASUS",7)                                                 |
++------------------------------------------------------------------------+
+| 047PEGASUS047PEGASUS047PEGASUS047PEGASUS047PEGASUS047PEGASUS047PEGASUS |
++------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT REPLACE("047PEGASUS","047","0047");
++------------------------------------+
+| REPLACE("047PEGASUS","047","0047") |
++------------------------------------+
+| 0047PEGASUS                        |
++------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT REVERSEE("047PEGASUS");
+ERROR 1305 (42000): FUNCTION university_211b326.REVERSEE does not exist
+mysql> SELECT REVERSE("047PEGASUS");
++-----------------------+
+| REVERSE("047PEGASUS") |
++-----------------------+
+| SUSAGEP740            |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT RIGHT("047PEGASUS",5);
++-----------------------+
+| RIGHT("047PEGASUS",5) |
++-----------------------+
+| GASUS                 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT RPAD("047PEGASUS",5,"hELLO");
++------------------------------+
+| RPAD("047PEGASUS",5,"hELLO") |
++------------------------------+
+| 047PE                        |
++------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT RTRIM("047PEGASUS    ");LO");
++-------------------------+
+| RTRIM("047PEGASUS    ") |
++-------------------------+
+| 047PEGASUS              |
++-------------------------+
+1 row in set (0.02 sec)
+
+    "> ;
+    "> ;
+    "> ^C
+mysql> SELECT RTRIM("047PEGASUS    ");
++-------------------------+
+| RTRIM("047PEGASUS    ") |
++-------------------------+
+| 047PEGASUS              |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> SLECT STRCMP("Hello","Hello");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SLECT STRCMP("Hello","Hello")' at line 1
+mysql> SELECT STRCMP("Hello","Hello");
++-------------------------+
+| STRCMP("Hello","Hello") |
++-------------------------+
+|                       0 |
++-------------------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT SUBSTRING("HELLO",1,6);
++------------------------+
+| SUBSTRING("HELLO",1,6) |
++------------------------+
+| HELLO                  |
++------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT TRIM("   047PEGASUS   ");
++--------------------------+
+| TRIM("   047PEGASUS   ") |
++--------------------------+
+| 047PEGASUS               |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT UCASE("047pegasus");
++---------------------+
+| UCASE("047pegasus") |
++---------------------+
+| 047PEGASUS          |
++---------------------+
+1 row in set (0.02 sec)
+
+mysql> SELECT CURDATE();
++------------+
+| CURDATE()  |
++------------+
+| 2022-08-25 |
++------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT CURTIME();
++-----------+
+| CURTIME() |
++-----------+
+| 15:56:55  |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT DATE_ADD("2002-10-11","10-05-06");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '"10-05-06")' at line 1
+mysql> SELECT DATE_ADD("2002-10-11","10-05-06",INT);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '"10-05-06",INT)' at line 1
+mysql> SELECT DATE_FORMAT("2002-10-11",DD-MM-YYYY);
+ERROR 1054 (42S22): Unknown column 'DD' in 'field list'
+mysql> SELECT DATE_FORMAT("2002-10-11","DD-MM-YYYY");
++----------------------------------------+
+| DATE_FORMAT("2002-10-11","DD-MM-YYYY") |
++----------------------------------------+
+| DD-MM-YYYY                             |
++----------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT DATE_FORMAT("2002-10-11");
+ERROR 1582 (42000): Incorrect parameter count in the call to native function 'DATE_FORMAT'
+mysql> SELECT DAY_OF_WEEK("2002-10-11");
+ERROR 1305 (42000): FUNCTION university_211b326.DAY_OF_WEEK does not exist
+mysql> SELECT DAYOFWEEK("2002-10-11");
++-------------------------+
+| DAYOFWEEK("2002-10-11") |
++-------------------------+
+|                       6 |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT DAYOFMONTH("2002-10-11");
++--------------------------+
+| DAYOFMONTH("2002-10-11") |
++--------------------------+
+|                       11 |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT DAYOFYEAR("2002-10-11");
++-------------------------+
+| DAYOFYEAR("2002-10-11") |
++-------------------------+
+|                     284 |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT DAYNAME("2002-10-11");
++-----------------------+
+| DAYNAME("2002-10-11") |
++-----------------------+
+| Friday                |
++-----------------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT EXTRACT(DD FROM "2002-10-11");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DD FROM "2002-10-11")' at line 1
+mysql> SELECT EXTRACT(DATE FROM "2002-10-11");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DATE FROM "2002-10-11")' at line 1
+mysql> SELECT EXTRACT("DATE" FROM "2002-10-11");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '"DATE" FROM "2002-10-11")' at line 1
+mysql> SELECT EXTRACT(YEAR FROM "2002-10-11");
++---------------------------------+
+| EXTRACT(YEAR FROM "2002-10-11") |
++---------------------------------+
+|                            2002 |
++---------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT FROM_DAYS(11);
++---------------+
+| FROM_DAYS(11) |
++---------------+
+| 0000-00-00    |
++---------------+
+1 row in set (0.02 sec)
+
+mysql> SELECT FROM_DAYS(200000000000);
++-------------------------+
+| FROM_DAYS(200000000000) |
++-------------------------+
+| 0000-00-00              |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT FROM_DAYS(20000);
++------------------+
+| FROM_DAYS(20000) |
++------------------+
+| 0054-10-04       |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT FROM_UNIXTIME(ts,YEAR);
+ERROR 1054 (42S22): Unknown column 'ts' in 'field list'
+mysql> SELECT FROM_UNIXTIME("10:12:33",YEAR);
+ERROR 1054 (42S22): Unknown column 'YEAR' in 'field list'
+mysql> SELECT FROM_UNIXTIME("10:12:33","HOURS:MINUTES:SECONDS");
++---------------------------------------------------+
+| FROM_UNIXTIME("10:12:33","HOURS:MINUTES:SECONDS") |
++---------------------------------------------------+
+| HOURS:MINUTES:SECONDS                             |
++---------------------------------------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> SELECT HOUR("10:12:11");
++------------------+
+| HOUR("10:12:11") |
++------------------+
+|               10 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT MINUTE("10:12:11");
++--------------------+
+| MINUTE("10:12:11") |
++--------------------+
+|                 12 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT MONTH("2002-10-11");
++---------------------+
+| MONTH("2002-10-11") |
++---------------------+
+|                  10 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT MONTHNAME("2002-10-11");
++-------------------------+
+| MONTHNAME("2002-10-11") |
++-------------------------+
+| October                 |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT NOW();
++---------------------+
+| NOW()               |
++---------------------+
+| 2022-08-25 16:11:35 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT QUARTER("2002-10-11");
++-----------------------+
+| QUARTER("2002-10-11") |
++-----------------------+
+|                     4 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT PERIOD_ADD("2002-10-11",5);
++----------------------------+
+| PERIOD_ADD("2002-10-11",5) |
++----------------------------+
+|                     202007 |
++----------------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> SELECT PERIOD_DIFF("2002-10-11","2002-09-25");
++----------------------------------------+
+| PERIOD_DIFF("2002-10-11","2002-09-25") |
++----------------------------------------+
+|                                      0 |
++----------------------------------------+
+1 row in set, 2 warnings (0.00 sec)
+
+mysql> SECOND("10:11:11")
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SECOND("10:11:11")' at line 1
+mysql> SELECT SECOND("10:11:11");
++--------------------+
+| SECOND("10:11:11") |
++--------------------+
+|                 11 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT SEC_TO_TIME(1200);
++-------------------+
+| SEC_TO_TIME(1200) |
++-------------------+
+| 00:20:00          |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT TO_DAYS("2002-10-11");
++-----------------------+
+| TO_DAYS("2002-10-11") |
++-----------------------+
+|                731499 |
++-----------------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT UNIX_TIMESTAMP("2002-10-11");
++------------------------------+
+| UNIX_TIMESTAMP("2002-10-11") |
++------------------------------+
+|                   1034274600 |
++------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT WEEK("2002-10-11");
++--------------------+
+| WEEK("2002-10-11") |
++--------------------+
+|                 40 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT YEAR("2002-10-11");
++--------------------+
+| YEAR("2002-10-11") |
++--------------------+
+|               2002 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT AES_ENCRYPT("Hi I am 047pegasus!!","047pegasus");
++----------------------------------------------------------------------------------------------------+
+| AES_ENCRYPT("Hi I am 047pegasus!!","047pegasus")                                                   |
++----------------------------------------------------------------------------------------------------+
+| 0x113B33B8BEFC0BAAE8F0F01364B14C48AEDC9DA968FD4A779746C0FBEDE52EFF                                 |
++----------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT AES_deCRYPT("Hi I am 047pegasus!!","047pegasus");
++----------------------------------------------------------------------------------------------------+
+| AES_deCRYPT("Hi I am 047pegasus!!","047pegasus")                                                   |
++----------------------------------------------------------------------------------------------------+
+| NULL                                                                                               |
++----------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT AES_DECRYPT("Hi I am 047pegasus!!","047pegasus");
++----------------------------------------------------------------------------------------------------+
+| AES_DECRYPT("Hi I am 047pegasus!!","047pegasus")                                                   |
++----------------------------------------------------------------------------------------------------+
+| NULL                                                                                               |
++----------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT AES_DECRYPT("0x113B33B8BEFC0BAAE8F0F01364B14C48AEDC9DA968FD4A779746C0FBEDE52EFF","047pegasus");
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| AES_DECRYPT("0x113B33B8BEFC0BAAE8F0F01364B14C48AEDC9DA968FD4A779746C0FBEDE52EFF","047pegasus")                                                                                                 |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| NULL                                                                                                                                                                                           |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT ENCRYPT("Hi I am 047pegasus!!","047pegasus");
+ERROR 1305 (42000): FUNCTION university_211b326.ENCRYPT does not exist
+mysql> ENCRYPT("Hi I am 047pegasus!!","047pegasus");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ENCRYPT("Hi I am 047pegasus!!","047pegasus")' at line 1
+mysql> SELECT ENCODE("Hi I am 047pegasus!!","047pegasus");
+ERROR 1305 (42000): FUNCTION university_211b326.ENCODE does not exist
+mysql> SELECT MD5("Hi I am 047pegasus!!");
++----------------------------------+
+| MD5("Hi I am 047pegasus!!")      |
++----------------------------------+
+| f3854598b8ce757177858a1277916e84 |
++----------------------------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT PASSWORD("Hi I am 047pegasus!!");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '("Hi I am 047pegasus!!")' at line 1
+mysql> SELECT PASSWORD("047pegasus");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '("047pegasus")' at line 1
+mysql> SELECT PASSWORD("pegasus");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '("pegasus")' at line 1
+mysql> SELECT SHA("pegasus");
++------------------------------------------+
+| SHA("pegasus")                           |
++------------------------------------------+
+| 493aec791a7595dce622346edc7554e3711109ca |
++------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT DATABASE();
++--------------------+
+| DATABASE()         |
++--------------------+
+| university_211b326 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT BENCHMARK(7,"2+3");
++--------------------+
+| BENCHMARK(7,"2+3") |
++--------------------+
+|                  0 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT BENCHMARK(7,2+3);
++------------------+
+| BENCHMARK(7,2+3) |
++------------------+
+|                0 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT BENCHMARK(7,2*3);
++------------------+
+| BENCHMARK(7,2*3) |
++------------------+
+|                0 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT CONNECTION_TD();
+ERROR 1305 (42000): FUNCTION university_211b326.CONNECTION_TD does not exist
+mysql> SELECT CONNECTION_ID();
++-----------------+
+| CONNECTION_ID() |
++-----------------+
+|               8 |
++-----------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT FOUND_ROWS();
++--------------+
+| FOUND_ROWS() |
++--------------+
+|            1 |
++--------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> SELECT GET_LOCK("047PEGASUS",5);
++--------------------------+
+| GET_LOCK("047PEGASUS",5) |
++--------------------------+
+|                        1 |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT IS_FREE_LOCK("047PEGASUS");
++----------------------------+
+| IS_FREE_LOCK("047PEGASUS") |
++----------------------------+
+|                          0 |
++----------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT LAST_INSERT_ID();
++------------------+
+| LAST_INSERT_ID() |
++------------------+
+|                0 |
++------------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT RELEASE_LOCK("047PEGASUS");
++----------------------------+
+| RELEASE_LOCK("047PEGASUS") |
++----------------------------+
+|                          1 |
++----------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT USER();
++----------------+
+| USER()         |
++----------------+
+| root@localhost |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT VERSIONH();
+ERROR 1305 (42000): FUNCTION university_211b326.VERSIONH does not exist
+mysql> SELECT VERSION();
++-----------+
+| VERSION() |
++-----------+
+| 8.0.30    |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT RAND();
++---------------------+
+| RAND()              |
++---------------------+
+| 0.05384821077235808 |
++---------------------+
+1 row in set (0.01 sec)
+
+mysql> SLECT FLOOR(2.54)
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SLECT FLOOR(2.54)' at line 1
+mysql> SELECT FLOOR(2.54);
++-------------+
+| FLOOR(2.54) |
++-------------+
+|           2 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT CEILING(2.54);
++---------------+
+| CEILING(2.54) |
++---------------+
+|             3 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT TRUNCATE(2.543,2);
++-------------------+
+| TRUNCATE(2.543,2) |
++-------------------+
+|              2.54 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql>

@@ -1,0 +1,35 @@
+14.24. Consider the universal relation R = {A, B, C, D, E, F, G, H, I, J} and the set 
+of functional dependencies F = {{A, B}→{C}, {A}→{D, E}, {B}→{F}, 
+{F}→{G, H}, {D}→{I, J}}. What is the key for R? Decompose R into 2NF and 
+then 3NF relations.
+14.25. Repeat Exercise 14.24 for the following different set of functional dependencies G = {{A, B}→{C}, {B, D}→{E, F}, {A, D}→{G, H}, {A}→{I}, {H}→{J}}.
+14.26. Consider the following relation:
+A B C TUPLE#
+10 b1 c1 1
+10 b2 c2 2
+11 b4 c1 3
+12 b3 c4 4
+13 b1 c1 5
+14 b3 c4 6
+a. Given the previous extension (state), which of the following dependencies may hold in the above relation? If the dependency cannot hold, 
+explain why by specifying the tuples that cause the violation.
+i. A → B, ii. B → C, iii. C → B, iv. B → A, v. C → A
+Exercises 499
+b. Does the above relation have a potential candidate key? If it does, what is 
+it? If it does not, why not?
+14.27. Consider a relation R(A, B, C, D, E) with the following dependencies:
+AB → C, CD → E, DE → B
+ Is AB a candidate key of this relation? If not, is ABD? Explain your answer.
+14.28. Consider the relation R, which has attributes that hold schedules of courses 
+and sections at a university; R = {Course_no, Sec_no, Offering_dept, 
+Credit_hours, Course_level, Instructor_ssn, Semester, Year, Days_hours, Room_no, 
+No_of_students}. Suppose that the following functional dependencies hold on R:
+{Course_no} → {Offering_dept, Credit_hours, Course_level}
+{Course_no, Sec_no, Semester, Year} → {Days_hours, Room_no,
+No_of_students, Instructor_ssn}
+{Room_no, Days_hours, Semester, Year} → {Instructor_ssn, Course_no,
+ Sec_no}
+ Try to determine which sets of attributes form keys of R. How would you 
+normalize this relation?
+
+Fig 14.3 Page Number 464

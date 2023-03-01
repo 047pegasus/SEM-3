@@ -1,0 +1,467 @@
+Enter password: ********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 27
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| adityaraj          |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| university_211b024 |
+| university_211b172 |
+| world              |
++--------------------+
+9 rows in set (0.03 sec)
+
+mysql> CREATE DATABASE UNIVERSITY_211B326;
+Query OK, 1 row affected (0.05 sec)
+
+mysql> SHOW ADTABASES;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ADTABASES' at line 1
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| adityaraj          |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| university_211b024 |
+| university_211b172 |
+| university_211b326 |
+| world              |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> USE UNIVERSITY_211B326;
+Database changed
+mysql> SHOW TABLES;
+Empty set (0.02 sec)
+
+mysql> CREATE TABLE EMPLOYEE(Fname VARCHAR(20), Minit VARCHAR(2), Lname VARCHAR(20), Ssn NUMERIC(11), Bdate DATE, Address VARCHAR(50), Sex VARCHAR(2), Salary NUMERIC(8), Super_ssn NUMERIC(11), Dno NUMERIC(2));
+Query OK, 0 rows affected (0.17 sec)
+
+mysql> SHOW TABLES;
++------------------------------+
+| Tables_in_university_211b326 |
++------------------------------+
+| employee                     |
++------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT VERSION();
++-----------+
+| VERSION() |
++-----------+
+| 8.0.30    |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT VERSION(), CURRENT_DATE;
++-----------+--------------+
+| VERSION() | CURRENT_DATE |
++-----------+--------------+
+| 8.0.30    | 2022-08-11   |
++-----------+--------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT SIN(PI()/4);
++--------------------+
+| SIN(PI()/4)        |
++--------------------+
+| 0.7071067811865476 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT NOW;
+ERROR 1054 (42S22): Unknown column 'NOW' in 'field list'
+mysql> SELECT NOW();
++---------------------+
+| NOW()               |
++---------------------+
+| 2022-08-11 15:34:34 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT USER();
++----------------+
+| USER()         |
++----------------+
+| root@localhost |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM EMPLOYEE
+    -> ;
+Empty set (0.01 sec)
+
+mysql> SELECT * FROM EMPLOYEE;
+Empty set (0.00 sec)
+
+mysql> SHOW TABLES;
++------------------------------+
+| Tables_in_university_211b326 |
++------------------------------+
+| employee                     |
++------------------------------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES("John",'B',"Smith",123456789,1965-01-09,"731 Fondren, Houston, TX",'M',30000,333445555,5);
+ERROR 1292 (22007): Incorrect date value: '1955' for column 'Bdate' at row 1
+mysql> INSERT INTO EMPLOYEE VALUES("John",'B',"Smith",123456789,"1965-01-09","731 Fondren, Houston, TX",'M',30000,333445555,5);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> SELECT * FROM EMPLOYEE
+    -> ;
++-------+-------+-------+-----------+------------+--------------------------+------+--------+-----------+------+
+| Fname | Minit | Lname | Ssn       | Bdate      | Address                  | Sex  | Salary | Super_ssn | Dno  |
++-------+-------+-------+-----------+------------+--------------------------+------+--------+-----------+------+
+| John  | B     | Smith | 123456789 | 1965-01-09 | 731 Fondren, Houston, TX | M    |  30000 | 333445555 |    5 |
++-------+-------+-------+-----------+------------+--------------------------+------+--------+-----------+------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES("Franklin",'T',"Wong",333445555,"1955-12-08","638 Voss, Houston, TX",'M',40000,888665555,5);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES("Alicia",'J',"Zelaya",999887777,"1968-01-19","3321 Castle, Spring, TX",'F',25000,987654321,4);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES("Jennifer",'S',"Wallace",987654321,"1941-08-20","291 Berry, Bellaire, TX",'F',43000,888665555,4);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES("Ramesh",'K',"Narayan",666884444,"1962-09-15","975 Fire Oak, Humble, TX",'M',38000,333445555,5);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES("Joyce",'A',"English",453453453,"1972-07-31","5631 Rice, Houston, TX",'F',25000,333445555,5);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES("Ahmed",'V',"Jabbar",987987987,"1969-03-29","980 Dallas, Houston, TX",'M',25000,987654321,4);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES("James",'E',"Borg",888665555,"1937-11-10","450 Stone, Houston, TX",'M',55000,NULL,1);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> SELECT * FROM EMPLOYEE;
++----------+-------+---------+-----------+------------+--------------------------+------+--------+-----------+------+
+| Fname    | Minit | Lname   | Ssn       | Bdate      | Address                  | Sex  | Salary | Super_ssn | Dno  |
++----------+-------+---------+-----------+------------+--------------------------+------+--------+-----------+------+
+| John     | B     | Smith   | 123456789 | 1965-01-09 | 731 Fondren, Houston, TX | M    |  30000 | 333445555 |    5 |
+| Franklin | T     | Wong    | 333445555 | 1955-12-08 | 638 Voss, Houston, TX    | M    |  40000 | 888665555 |    5 |
+| Alicia   | J     | Zelaya  | 999887777 | 1968-01-19 | 3321 Castle, Spring, TX  | F    |  25000 | 987654321 |    4 |
+| Jennifer | S     | Wallace | 987654321 | 1941-08-20 | 291 Berry, Bellaire, TX  | F    |  43000 | 888665555 |    4 |
+| Ramesh   | K     | Narayan | 666884444 | 1962-09-15 | 975 Fire Oak, Humble, TX | M    |  38000 | 333445555 |    5 |
+| Joyce    | A     | English | 453453453 | 1972-07-31 | 5631 Rice, Houston, TX   | F    |  25000 | 333445555 |    5 |
+| Ahmed    | V     | Jabbar  | 987987987 | 1969-03-29 | 980 Dallas, Houston, TX  | M    |  25000 | 987654321 |    4 |
+| James    | E     | Borg    | 888665555 | 1937-11-10 | 450 Stone, Houston, TX   | M    |  55000 |      NULL |    1 |
++----------+-------+---------+-----------+------------+--------------------------+------+--------+-----------+------+
+8 rows in set (0.00 sec)
+
+mysql> CREATE TABLE DEPARTMENT(Dname VARCHAR(20), Dnumber NUMERIC(2), Mgr_ssn NUMERIC(11), Mgr_start_date DATE);
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> SHOW TABLES;
++------------------------------+
+| Tables_in_university_211b326 |
++------------------------------+
+| department                   |
+| employee                     |
++------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO DEPARTMENT VALUES("Research",5,333445555,"1988-05-22");
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO DEPARTMENT VALUES("Administration",4,987654321,"1995-01-01");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO DEPARTMENT VALUES("Headquarters",1,888665555,"1981-06-19");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> show tables;
++------------------------------+
+| Tables_in_university_211b326 |
++------------------------------+
+| department                   |
+| employee                     |
++------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from department;
++----------------+---------+-----------+----------------+
+| Dname          | Dnumber | Mgr_ssn   | Mgr_start_date |
++----------------+---------+-----------+----------------+
+| Research       |       5 | 333445555 | 1988-05-22     |
+| Administration |       4 | 987654321 | 1995-01-01     |
+| Headquarters   |       1 | 888665555 | 1981-06-19     |
++----------------+---------+-----------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> CREATE TABLE DEPT_LOCATIONS(Dnumber NUMERIC(2), Dlocation VARCHAR(20));
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> SHOW TABLES;
++------------------------------+
+| Tables_in_university_211b326 |
++------------------------------+
+| department                   |
+| dept_locations               |
+| employee                     |
++------------------------------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO DEPT_LOCATIONS VALUES(1,"Houston");
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO DEPT_LOCATIONS VALUES(4,"Stafford");
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO DEPT_LOCATIONS VALUES(5,"Bellaire");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO DEPT_LOCATIONS VALUES(5,"Sugarland");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO DEPT_LOCATIONS VALUES(5,"Houston");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> show tables;
++------------------------------+
+| Tables_in_university_211b326 |
++------------------------------+
+| department                   |
+| dept_locations               |
+| employee                     |
++------------------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from dept_loactions
+    -> ;
+ERROR 1146 (42S02): Table 'university_211b326.dept_loactions' doesn't exist
+mysql> select * from DEPT_LOACTIONS;
+ERROR 1146 (42S02): Table 'university_211b326.dept_loactions' doesn't exist
+mysql> select * from DEPT_LOCATIONS;
++---------+-----------+
+| Dnumber | Dlocation |
++---------+-----------+
+|       1 | Houston   |
+|       4 | Stafford  |
+|       5 | Bellaire  |
+|       5 | Sugarland |
+|       5 | Houston   |
++---------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> CREATE TABLE PROJECT(Pname VARCHAR(20), Pnumber NUMERIC(3), Plocation VARCHAR(15), Dnum NUMERIC(2));
+Query OK, 0 rows affected (0.39 sec)
+
+mysql> SHOW TABLES;
++------------------------------+
+| Tables_in_university_211b326 |
++------------------------------+
+| department                   |
+| dept_locations               |
+| employee                     |
+| project                      |
++------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> INSERT INTO PROJECT VALUES("ProductX",1,"Bellaire",5);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO PROJECT VALUES("ProductY",2,"Sugarland",5);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO PROJECT VALUES("ProductZ",3,"Houston",5);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO PROJECT VALUES("Computerization",10,"Stafford",4);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO PROJECT VALUES("Reorganization",20,"Houston",1);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO PROJECT VALUES("Newbenefits",30,"Satfford",4);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from PROJECT;
++-----------------+---------+-----------+------+
+| Pname           | Pnumber | Plocation | Dnum |
++-----------------+---------+-----------+------+
+| ProductX        |       1 | Bellaire  |    5 |
+| ProductY        |       2 | Sugarland |    5 |
+| ProductZ        |       3 | Houston   |    5 |
+| Computerization |      10 | Stafford  |    4 |
+| Reorganization  |      20 | Houston   |    1 |
+| Newbenefits     |      30 | Satfford  |    4 |
++-----------------+---------+-----------+------+
+6 rows in set (0.00 sec)
+
+mysql> CREATE TABLE DEPENDENT(Essn NUMERIC(11), Dependent_name VARCHAR(20), Sex VARCHAR(2), Bdate DATE, Relationship VARCHAR(20));
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> SHOW TABLES;
++------------------------------+
+| Tables_in_university_211b326 |
++------------------------------+
+| department                   |
+| dependent                    |
+| dept_locations               |
+| employee                     |
+| project                      |
++------------------------------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT INTO DEPENDENT VALUES(333445555,"Alice",'F',"1986-04-05","Daughter");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO DEPENDENT VALUES(333445555,"Theodore",'M',"1983-10-25","Son");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO DEPENDENT VALUES(333445555,"Joy",'M',"1958-05-03","Spouse");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO DEPENDENT VALUES(987654321,"Abner",'M',"1942-02-28","Spouse");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO DEPENDENT VALUES(123456789,"Michael",'M',"1988-01-04","Son");
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO DEPENDENT VALUES(123456789,"Alice",'F',"1988-12-30","Daughter");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO DEPENDENT VALUES(123456789,"Elizabeth",'F',"1967-05-05","Spouse");
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from DEPENDENT
+    -> ;
++-----------+----------------+------+------------+--------------+
+| Essn      | Dependent_name | Sex  | Bdate      | Relationship |
++-----------+----------------+------+------------+--------------+
+| 333445555 | Alice          | F    | 1986-04-05 | Daughter     |
+| 333445555 | Theodore       | M    | 1983-10-25 | Son          |
+| 333445555 | Joy            | M    | 1958-05-03 | Spouse       |
+| 987654321 | Abner          | M    | 1942-02-28 | Spouse       |
+| 123456789 | Michael        | M    | 1988-01-04 | Son          |
+| 123456789 | Alice          | F    | 1988-12-30 | Daughter     |
+| 123456789 | Elizabeth      | F    | 1967-05-05 | Spouse       |
++-----------+----------------+------+------------+--------------+
+7 rows in set (0.00 sec)
+
+mysql> CREATE TABLE WORKS_ON(Essn NUMERIC(11), Pno NUMERIC(3), Hours FLOAT(3));
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> show tables;
++------------------------------+
+| Tables_in_university_211b326 |
++------------------------------+
+| department                   |
+| dependent                    |
+| dept_locations               |
+| employee                     |
+| project                      |
+| works_on                     |
++------------------------------+
+6 rows in set (0.00 sec)
+
+mysql> INSERT INTO WORKS_ON VALUES(123456789,1,32.5);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO WORKS_ON VALUES(123456789,2,7.5);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO WORKS_ON VALUES(666884444,3,40.0);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO WORKS_ON VALUES(453453453,1,20.0);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO WORKS_ON VALUES(453453453,2,20.0);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO WORKS_ON VALUES(333445555,2,10.0);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO WORKS_ON VALUES(333445555,3,10.0);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO WORKS_ON VALUES(333445555,10,10.0);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO WORKS_ON VALUES(333445555,20,10.0);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO WORKS_ON VALUES(999887777,30,30.0);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO WORKS_ON VALUES(999887777,10,10.0);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO WORKS_ON VALUES(999887777,10,35.0);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO WORKS_ON VALUES(999887777,30,5.0);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO WORKS_ON VALUES(987654321,30,20.0);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO WORKS_ON VALUES(987654321,20,15.0);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO WORKS_ON VALUES(888665555,20,NULL);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> show tables;
++------------------------------+
+| Tables_in_university_211b326 |
++------------------------------+
+| department                   |
+| dependent                    |
+| dept_locations               |
+| employee                     |
+| project                      |
+| works_on                     |
++------------------------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from WORKS_ON;
++-----------+------+-------+
+| Essn      | Pno  | Hours |
++-----------+------+-------+
+| 123456789 |    1 |  32.5 |
+| 123456789 |    2 |   7.5 |
+| 666884444 |    3 |    40 |
+| 453453453 |    1 |    20 |
+| 453453453 |    2 |    20 |
+| 333445555 |    2 |    10 |
+| 333445555 |    3 |    10 |
+| 333445555 |   10 |    10 |
+| 333445555 |   20 |    10 |
+| 999887777 |   30 |    30 |
+| 999887777 |   10 |    10 |
+| 999887777 |   10 |    35 |
+| 999887777 |   30 |     5 |
+| 987654321 |   30 |    20 |
+| 987654321 |   20 |    15 |
+| 888665555 |   20 |  NULL |
++-----------+------+-------+
+16 rows in set (0.00 sec)
+
+mysql>
+

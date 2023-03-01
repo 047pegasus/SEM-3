@@ -1,0 +1,12 @@
+Operator(Fixed)
+Routes
+Bus(Capacity)(Fixed)
+Booking(Fixed)
+Boarding Pt(should include capacvity calc for diff boarding pt within the route )
+Bus_Runs (should include table where bus running information dates and its capacity are listed)
+Passenger(Ref Id. Transaction, Booking History Deatils)(Fixed)
+** Availablity TableAttribute is to be included in some Table
+
+Almost 5 Tables to be stored 
+
+Reverse route bus should not be printed (complexity)

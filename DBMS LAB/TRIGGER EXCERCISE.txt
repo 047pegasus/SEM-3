@@ -1,0 +1,328 @@
+Enter password: ********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 12
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++---------------------+
+| Database            |
++---------------------+
+| 211b023_college     |
+| 211b024_college     |
+| 211b248_cas1        |
+| aditya_211b024      |
+| casdel1             |
+| collage_211b429     |
+| college_211b172     |
+| company_211b172     |
+| company_211b248     |
+| information_schema  |
+| mysql               |
+| performance_schema  |
+| raushan_211b248     |
+| sakila              |
+| student_if          |
+| sys                 |
+| test_db             |
+| trigger_211b172     |
+| trriger1            |
+| university_211b024  |
+| university_211b136  |
+| university_211b172  |
+| university_211b248  |
+| university_211b326  |
+| university_211b429  |
+| university__211b429 |
+| world               |
++---------------------+
+27 rows in set (0.26 sec)
+
+mysql> create table stu_perf1;
+ERROR 1046 (3D000): No database selected
+mysql> create database stu_perf1;
+Query OK, 1 row affected (0.14 sec)
+
+mysql> shoe databases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'shoe databases' at line 1
+mysql> show databases;
++---------------------+
+| Database            |
++---------------------+
+| 211b023_college     |
+| 211b024_college     |
+| 211b248_cas1        |
+| aditya_211b024      |
+| casdel1             |
+| collage_211b429     |
+| college_211b172     |
+| company_211b172     |
+| company_211b248     |
+| information_schema  |
+| mysql               |
+| performance_schema  |
+| raushan_211b248     |
+| sakila              |
+| stu_perf1           |
+| student_if          |
+| sys                 |
+| test_db             |
+| trigger_211b172     |
+| trriger1            |
+| university_211b024  |
+| university_211b136  |
+| university_211b172  |
+| university_211b248  |
+| university_211b326  |
+| university_211b429  |
+| university__211b429 |
+| world               |
++---------------------+
+28 rows in set (0.00 sec)
+
+mysql> use stu_perf1
+Database changed
+mysql> show tables;
+Empty set (0.16 sec)
+
+mysql> drop database stu_perf1;
+Query OK, 0 rows affected (0.53 sec)
+
+mysql> show tables;
+ERROR 1046 (3D000): No database selected
+mysql> CREATE DATABASE trigger_211b326;
+Query OK, 1 row affected (0.04 sec)
+
+mysql> use trigger_211b326;
+Database changed
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> CREATE TABLE stu_perf1;
+ERROR 4028 (HY000): A table must have at least one visible column.
+mysql> CREATE TABLE stu_perf1(eno INTEGER(6), name VARCHAR(10), sub1 INTEGER(2), sub2 INTEGER(3), grade CHAR(1));
+Query OK, 0 rows affected, 3 warnings (0.46 sec)
+
+mysql> CREATE TABLE log_sf(eno INTEGER(6), name VARCHAR(10), sub1 INTEGER(2), sub2 INTEGER(3), grade CHAR(1), operation VARCHAR(25), username VARCHAR(20), op_time TIMESTAMP);
+Query OK, 0 rows affected, 3 warnings (0.13 sec)
+
+mysql> show tables;
++---------------------------+
+| Tables_in_trigger_211b326 |
++---------------------------+
+| log_sf                    |
+| stu_perf1                 |
++---------------------------+
+2 rows in set (0.03 sec)
+
+mysql> desc stu_perf1;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| eno   | int         | YES  |     | NULL    |       |
+| name  | varchar(10) | YES  |     | NULL    |       |
+| sub1  | int         | YES  |     | NULL    |       |
+| sub2  | int         | YES  |     | NULL    |       |
+| grade | char(1)     | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+5 rows in set (0.02 sec)
+
+mysql> desc log_sf;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| eno       | int         | YES  |     | NULL    |       |
+| name      | varchar(10) | YES  |     | NULL    |       |
+| sub1      | int         | YES  |     | NULL    |       |
+| sub2      | int         | YES  |     | NULL    |       |
+| grade     | char(1)     | YES  |     | NULL    |       |
+| operation | varchar(25) | YES  |     | NULL    |       |
+| username  | varchar(20) | YES  |     | NULL    |       |
+| op_time   | timestamp   | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> delimiter //
+mysql> CREATE TRIGGER tri_sp_update AFTER UPDATE ON stu_perf1 FOR EACH ROW BEGIN INSERT INTO log_sf VALUES(old.eno, old.name, old.sub1, old.sub2, old.grade, "Update", user(), now());
+    -> END//
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> delimiter ;
+mysql> show tables;
++---------------------------+
+| Tables_in_trigger_211b326 |
++---------------------------+
+| log_sf                    |
+| stu_perf1                 |
++---------------------------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO stu_perf1 VALUES(1,"Tanishq Agarwal", 99,100, 'O');
+ERROR 1406 (22001): Data too long for column 'name' at row 1
+mysql> INSERT INTO stu_perf1 VALUES(1,"Tanishq", 99,100, 'O');0
+Query OK, 1 row affected (0.04 sec)
+
+    -> ^C
+mysql> INSERT INTO stu_perf1 VALUES(2,"Tanmay", 98,99, 'O');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO stu_perf1 VALUES(3,"Ayushi", 99,98, 'O');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO stu_perf1 VALUES(4,"Shreyansh", 97,98, 'O');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO stu_perf1 VALUES(5,"Simran", 95,95, 'O');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> SELECT * FROM log_sf;
+Empty set (0.00 sec)
+
+mysql> UPDATE stu_perf1 SET name="Pegasus", sub1=99, sub2=100, grade='A' WHERE eno= 1;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM log_sf;
++------+---------+------+------+-------+-----------+----------------+---------------------+
+| eno  | name    | sub1 | sub2 | grade | operation | username       | op_time             |
++------+---------+------+------+-------+-----------+----------------+---------------------+
+|    1 | Tanishq |   99 |  100 | O     | Update    | root@localhost | 2022-12-01 15:43:21 |
++------+---------+------+------+-------+-----------+----------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM log_sf;
++------+---------+------+------+-------+-----------+----------------+---------------------+
+| eno  | name    | sub1 | sub2 | grade | operation | username       | op_time             |
++------+---------+------+------+-------+-----------+----------------+---------------------+
+|    1 | Tanishq |   99 |  100 | O     | Update    | root@localhost | 2022-12-01 15:43:21 |
++------+---------+------+------+-------+-----------+----------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> UPDATE stu_perf1 SET name="Ram", sub1=92, sub2=92, grade='A' WHERE eno= 5;
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM log_sf;
++------+---------+------+------+-------+-----------+----------------+---------------------+
+| eno  | name    | sub1 | sub2 | grade | operation | username       | op_time             |
++------+---------+------+------+-------+-----------+----------------+---------------------+
+|    1 | Tanishq |   99 |  100 | O     | Update    | root@localhost | 2022-12-01 15:43:21 |
+|    5 | Simran  |   95 |   95 | O     | Update    | root@localhost | 2022-12-01 15:49:33 |
++------+---------+------+------+-------+-----------+----------------+---------------------+
+2 rows in set (0.00 sec)
+
+mysql> create table smarks (eno int primary key, name varchar(10), dbms int, ds int, per float);
+Query OK, 0 rows affected (0.18 sec)
+
+mysql> show tables;
++---------------------------+
+| Tables_in_trigger_211b326 |
++---------------------------+
+| log_sf                    |
+| smarks                    |
+| stu_perf1                 |
++---------------------------+
+3 rows in set (0.00 sec)
+
+mysql> desc smarks;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| eno   | int         | NO   | PRI | NULL    |       |
+| name  | varchar(10) | YES  |     | NULL    |       |
+| dbms  | int         | YES  |     | NULL    |       |
+| ds    | int         | YES  |     | NULL    |       |
+| per   | float       | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> delimiter //
+mysql> create trigger ins_per_smarks
+    -> before insert
+    -> on smarks
+    -> for each row begin
+    -> set new.per = (new.dbms+new.ds)/2;
+    -> end//
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> delimiter ;
+mysql> insert into smarks (eno,name,dbms,ds) values (123,'Nilesh', 70, 80);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from smarks;
++-----+--------+------+------+------+
+| eno | name   | dbms | ds   | per  |
++-----+--------+------+------+------+
+| 123 | Nilesh |   70 |   80 |   75 |
++-----+--------+------+------+------+
+1 row in set (0.00 sec)
+
+mysql> CREATE TABLE sgrade(eno INTEGER NOT NULL, name VARCHAR(10), dbms INTEGER(3), ds INTEGER(3), grade CHAR(1));
+Query OK, 0 rows affected, 2 warnings (0.13 sec)
+
+mysql> INSERT INTO sgrade VAUES(123,"Nilesh",70,80,'A');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'VAUES(123,"Nilesh",70,80,'A')' at line 1
+mysql> INSERT INTO sgrade VALUES(123,"Nilesh",70,80,'A');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO sgrade VALUES(124,"Paresh",45,90,'P');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO sgrade VALUES(125,"Param",85,90,'B');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from sgrade;
++-----+--------+------+------+-------+
+| eno | name   | dbms | ds   | grade |
++-----+--------+------+------+-------+
+| 123 | Nilesh |   70 |   80 | A     |
+| 124 | Paresh |   45 |   90 | P     |
+| 125 | Param  |   85 |   90 | B     |
++-----+--------+------+------+-------+
+3 rows in set (0.00 sec)
+
+mysql> delimiter //
+mysql> create trigger ins_grade
+    -> before insert
+    -> on sgrade
+    -> for each row begin
+    -> if (new.dbms>=50) then
+    -> set new.grade = 'B';
+    -> else if (new.dbms >= 35) then
+    -> set new.grade = 'P';
+    -> else
+    -> set new.grade = 'F';
+    -> end if;
+    -> end if;
+    -> end//
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> UPDATE sgarde SET dbms=92 grade='A' WHERE eno= 123;
+    -> ^C
+mysql> delimiter ;
+mysql> UPDATE sgarde SET dbms=92 grade='A' WHERE eno= 123;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'grade='A' WHERE eno= 123' at line 1
+mysql> UPDATE sgarde SET dbms=92, grade='A' WHERE eno= 123;
+ERROR 1146 (42S02): Table 'trigger_211b326.sgarde' doesn't exist
+mysql> UPDATE sgrade SET dbms=92, grade='A' WHERE eno= 123;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from sgrade;
++-----+--------+------+------+-------+
+| eno | name   | dbms | ds   | grade |
++-----+--------+------+------+-------+
+| 123 | Nilesh |   92 |   80 | A     |
+| 124 | Paresh |   45 |   90 | P     |
+| 125 | Param  |   85 |   90 | B     |
++-----+--------+------+------+-------+
+3 rows in set (0.00 sec)
+
+mysql>

@@ -1,0 +1,172 @@
+Enter password: ********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database test_db;
+Query OK, 1 row affected (0.05 sec)
+
+mysql> use test_db;
+Database changed
+mysql> show tables;;
+Empty set (0.00 sec)
+
+ERROR:
+No query specified
+
+mysql> CREATE TABLE depa (DNA VARCHAR(5), DNO INT(2));
+Query OK, 0 rows affected, 1 warning (0.22 sec)
+
+mysql> INSERT INTO depa VALUES("cse", 1);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO depa VALUES("mec", 4);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO depa VALUES("ece", 6);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO depa VALUES("civ", 5);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO depa VALUES("che", 3);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> CREATE TABLE pupil (NAME VARCHAR(10), ENO INT(5), DNO INT(2) FORIEGN KEY REFERENCES depa(DNO));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FORIEGN KEY REFERENCES depa(DNO))' at line 1
+mysql> CREATE TABLE pupil (NAME VARCHAR(10), ENO INT(5), DNO INT(2) FOREIGN KEY REFERENCES depa(DNO));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FOREIGN KEY REFERENCES depa(DNO))' at line 1
+mysql> CREATE TABLE pupil (NAME VARCHAR(10), ENO INT(5), DNO INT FOREIGN KEY REFERENCES depa(DNO));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FOREIGN KEY REFERENCES depa(DNO))' at line 1
+mysql> CREATE TABLE pupil( NAME VARCHAR(10), ENO INT PRIMARY KEY, DNO INT FOREIGN KEY REFERENCES depa(DNO));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FOREIGN KEY REFERENCES depa(DNO))' at line 1
+mysql> CREATE TABLE pupil( NAME VARCHAR(10), ENO INT PRIMARY KEY,DNO INT FOREIGN KEY REFERENCES depa(DNO));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FOREIGN KEY REFERENCES depa(DNO))' at line 1
+mysql> CREATE TABLE pupil( NAME VARCHAR(10), ENO INT(5) PRIMARY KEY, DNO INT(5), FOREIGN KEY (DNO) REFERENCES depa(DNO));
+ERROR 1822 (HY000): Failed to add the foreign key constraint. Missing index for constraint 'pupil_ibfk_1' in the referenced table 'depa'
+mysql> CREATE TABLE pupil( NAME VARCHAR(10), ENO INT(5) PRIMARY KEY, DNO INT(5), FOREIGN KEY (DNO) REFERENCES depa(DNO) ON DELETE CASCADE);
+ERROR 1822 (HY000): Failed to add the foreign key constraint. Missing index for constraint 'pupil_ibfk_1' in the referenced table 'depa'
+mysql> alter table depa add primary key (DNO);
+Query OK, 0 rows affected (1.66 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE pupil( NAME VARCHAR(10), ENO INT(5) PRIMARY KEY, DNO INT(5), FOREIGN KEY (DNO) REFERENCES depa(DNO) ON DELETE CASCADE);
+Query OK, 0 rows affected, 2 warnings (0.22 sec)
+
+mysql> INSERT INTO pupil VALUES("Nayan",1234,1);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> INSERT INTO pupil VALUES("Alap",1238,6);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO pupil VALUES("Harshit",1236,6);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> INSERT INTO pupil VALUES("Harshit",1237,5);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO pupil VALUES("Raj",1235,3);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO pupil VALUES("Sagar",3456,3);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from pupil, depa;
++---------+------+------+------+-----+
+| NAME    | ENO  | DNO  | DNA  | DNO |
++---------+------+------+------+-----+
+| Nayan   | 1234 |    1 | ece  |   6 |
+| Nayan   | 1234 |    1 | civ  |   5 |
+| Nayan   | 1234 |    1 | mec  |   4 |
+| Nayan   | 1234 |    1 | che  |   3 |
+| Nayan   | 1234 |    1 | cse  |   1 |
+| Raj     | 1235 |    3 | ece  |   6 |
+| Raj     | 1235 |    3 | civ  |   5 |
+| Raj     | 1235 |    3 | mec  |   4 |
+| Raj     | 1235 |    3 | che  |   3 |
+| Raj     | 1235 |    3 | cse  |   1 |
+| Harshit | 1236 |    6 | ece  |   6 |
+| Harshit | 1236 |    6 | civ  |   5 |
+| Harshit | 1236 |    6 | mec  |   4 |
+| Harshit | 1236 |    6 | che  |   3 |
+| Harshit | 1236 |    6 | cse  |   1 |
+| Harshit | 1237 |    5 | ece  |   6 |
+| Harshit | 1237 |    5 | civ  |   5 |
+| Harshit | 1237 |    5 | mec  |   4 |
+| Harshit | 1237 |    5 | che  |   3 |
+| Harshit | 1237 |    5 | cse  |   1 |
+| Alap    | 1238 |    6 | ece  |   6 |
+| Alap    | 1238 |    6 | civ  |   5 |
+| Alap    | 1238 |    6 | mec  |   4 |
+| Alap    | 1238 |    6 | che  |   3 |
+| Alap    | 1238 |    6 | cse  |   1 |
+| Sagar   | 3456 |    3 | ece  |   6 |
+| Sagar   | 3456 |    3 | civ  |   5 |
+| Sagar   | 3456 |    3 | mec  |   4 |
+| Sagar   | 3456 |    3 | che  |   3 |
+| Sagar   | 3456 |    3 | cse  |   1 |
++---------+------+------+------+-----+
+30 rows in set (0.01 sec)
+
+mysql> select * from pupil;
++---------+------+------+
+| NAME    | ENO  | DNO  |
++---------+------+------+
+| Nayan   | 1234 |    1 |
+| Raj     | 1235 |    3 |
+| Harshit | 1236 |    6 |
+| Harshit | 1237 |    5 |
+| Alap    | 1238 |    6 |
+| Sagar   | 3456 |    3 |
++---------+------+------+
+6 rows in set (0.00 sec)
+
+mysql> select * from depa;
++------+-----+
+| DNA  | DNO |
++------+-----+
+| cse  |   1 |
+| che  |   3 |
+| mec  |   4 |
+| civ  |   5 |
+| ece  |   6 |
++------+-----+
+5 rows in set (0.00 sec)
+
+mysql> delete from depa where dname = 'che';
+ERROR 1054 (42S22): Unknown column 'dname' in 'where clause'
+mysql> delete from depa where DNA = 'che';
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from depa;
++------+-----+
+| DNA  | DNO |
++------+-----+
+| cse  |   1 |
+| mec  |   4 |
+| civ  |   5 |
+| ece  |   6 |
++------+-----+
+4 rows in set (0.00 sec)
+
+mysql> select * from pupil;
++---------+------+------+
+| NAME    | ENO  | DNO  |
++---------+------+------+
+| Nayan   | 1234 |    1 |
+| Harshit | 1236 |    6 |
+| Harshit | 1237 |    5 |
+| Alap    | 1238 |    6 |
++---------+------+------+
+4 rows in set (0.00 sec)
+
+mysql> ^C
+mysql>
